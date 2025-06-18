@@ -1,6 +1,20 @@
 # 🏓 Paddle Game with Enhanced AI
 
-This project features an advanced AI system for a paddle game using Deep Q-Learning (DQN) with sophisticated improvements and optimizations.
+## 🎥 Demo Videos
+
+The repository includes two demonstration videos showing the AI's performance before and after training:
+
+### Before Training (Random Movements)
+[![Watch Before Training](https://img.youtube.com/vi/1-ApeaywOaY8l-0MRj3qgG3jiSiO4YyM0/0.jpg)](https://drive.google.com/file/d/1-ApeaywOaY8l-0MRj3qgG3jiSiO4YyM0/view?usp=drive_link)
+
+> **Click the image above to watch the before training demo on Google Drive.**
+
+### After Training (Intelligent Gameplay)
+[![Watch After Training](https://img.youtube.com/vi/1QPb9R3c9aFxh0yCi8EzIQkjx22HBDh9K/0.jpg)](https://drive.google.com/file/d/1QPb9R3c9aFxh0yCi8EzIQkjx22HBDh9K/view?usp=drive_link)
+
+> **Click the image above to watch the after training demo on Google Drive.**
+
+These videos demonstrate the significant improvement in AI performance through the training process.
 
 ## 🚀 Features
 
