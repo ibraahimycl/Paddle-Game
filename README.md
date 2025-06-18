@@ -135,16 +135,14 @@ Use `ai_test_untrained.py` to observe untrained model behavior:
 The repository includes two demonstration videos showing the AI's performance before and after training:
 
 ### Before Training (Random Movements)
-<video width="640" height="480" controls>
-  <source src="before.MOV" type="video/quicktime">
-  Your browser does not support the video tag.
-</video>
+[![Watch Before Training](https://img.youtube.com/vi/1-ApeaywOaY8l-0MRj3qgG3jiSiO4YyM0/0.jpg)](https://drive.google.com/file/d/1-ApeaywOaY8l-0MRj3qgG3jiSiO4YyM0/view?usp=drive_link)
+
+> **Click the image above to watch the before training demo on Google Drive.**
 
 ### After Training (Intelligent Gameplay)
-<video width="640" height="480" controls>
-  <source src="after.MOV" type="video/quicktime">
-  Your browser does not support the video tag.
-</video>
+[![Watch After Training](https://img.youtube.com/vi/1QPb9R3c9aFxh0yCi8EzIQkjx22HBDh9K/0.jpg)](https://drive.google.com/file/d/1QPb9R3c9aFxh0yCi8EzIQkjx22HBDh9K/view?usp=drive_link)
+
+> **Click the image above to watch the after training demo on Google Drive.**
 
 These videos demonstrate the significant improvement in AI performance through the training process.
 
