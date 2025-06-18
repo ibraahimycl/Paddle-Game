@@ -149,9 +149,19 @@ Target network updated at step 100
 
 ## 🎥 Demo Videos
 
-The repository includes two demonstration videos:
-- **`before.MOV`**: Shows the AI performance before training (random movements)
-- **`after.MOV`**: Shows the AI performance after training (intelligent gameplay)
+The repository includes two demonstration videos showing the AI's performance before and after training:
+
+### Before Training (Random Movements)
+<video width="640" height="480" controls>
+  <source src="before.MOV" type="video/quicktime">
+  Your browser does not support the video tag.
+</video>
+
+### After Training (Intelligent Gameplay)
+<video width="640" height="480" controls>
+  <source src="after.MOV" type="video/quicktime">
+  Your browser does not support the video tag.
+</video>
 
 These videos demonstrate the significant improvement in AI performance through the training process.
 
