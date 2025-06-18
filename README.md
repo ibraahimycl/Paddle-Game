@@ -126,15 +126,6 @@ Use `ai_test_untrained.py` to observe untrained model behavior:
 
 ## 📊 Monitoring and Debugging
 
-### Console Outputs
-```
-DQN AI initialized with state_size=6, action_size=3
-Random action: 1 (epsilon: 0.950)
-Greedy action: 0 (Q-values: [0.1, 0.3, 0.2])
-Training step 1000, Loss: 0.0456, Epsilon: 0.368
-Target network updated at step 100
-```
-
 ### Debug Assertions
 - NaN/Inf checking in state values
 - Reward type validation
