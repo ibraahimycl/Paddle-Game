@@ -104,7 +104,7 @@ python ai_test_untrained.py
 - **Being close to ball**: +0.2 points
 
 ### Training Parameters
-- **Learning Rate**: 0.001
+- **Learning Rate**: 0.01
 - **Gamma (Discount Factor)**: 0.99
 - **Epsilon Decay**: Logarithmic
 - **Target Network Update**: Every 100 steps
