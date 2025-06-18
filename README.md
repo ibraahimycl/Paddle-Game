@@ -89,14 +89,6 @@ python ai_test_untrained.py
 
 ## 🔧 Technical Details
 
-### State Vector (6-dimensional)
-1. `ball_y / WINDOW_HEIGHT` - Ball Y position (normalized)
-2. `paddle_y / WINDOW_HEIGHT` - Paddle Y position (normalized)
-3. `ball_direction_x / BALL_SPEED_X` - Ball X direction (normalized)
-4. `ball_direction_y / BALL_SPEED_Y` - Ball Y direction (normalized)
-5. `ball_velocity_x / 5.0` - Ball X velocity (normalized) ⭐ **NEW**
-6. `paddle_height / PADDLE_HEIGHT` - Paddle height (normalized) ⭐ **NEW**
-
 ### Reward System
 - **Hitting the ball**: +2 points
 - **Hitting near center**: +1 extra point
