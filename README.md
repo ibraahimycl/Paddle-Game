@@ -1,31 +1,31 @@
 # 🏓 Paddle Game with Enhanced AI
 
-Bu proje, derin Q-öğrenme (Deep Q-Learning) kullanarak paddle oyunu için gelişmiş bir AI sistemi içerir.
+This project features an advanced AI system for a paddle game using Deep Q-Learning (DQN) with sophisticated improvements and optimizations.
 
-## 🚀 Özellikler
+## 🚀 Features
 
-### 🤖 AI Modelleri
-- **DQN AI** (`dqn_ai.py`): Derin Q-Network ile gelişmiş AI
-- **Simple AI** (`paddle_ai.py`): Basit Q-Learning tabanlı AI
+### 🤖 AI Models
+- **DQN AI** (`dqn_ai.py`): Advanced AI using Deep Q-Network with Double DQN
+- **Simple AI** (`paddle_ai.py`): Basic Q-Learning based AI
 
-### 🧠 Gelişmiş AI Özellikleri
+### 🧠 Advanced AI Features
 
 #### 1. **Enhanced State Vector**
-- **Önceki**: 4 boyutlu state (ball_y, paddle_y, ball_direction_x, ball_direction_y)
-- **Yeni**: 6 boyutlu state (ball_y, paddle_y, ball_direction_x, ball_direction_y, **ball_velocity_x**, **paddle_height**)
-- **Normalizasyon**: Tüm değerler ekran boyutlarına göre normalize edilir
+- **Previous**: 4-dimensional state (ball_y, paddle_y, ball_direction_x, ball_direction_y)
+- **New**: 6-dimensional state (ball_y, paddle_y, ball_direction_x, ball_direction_y, **ball_velocity_x**, **paddle_height**)
+- **Normalization**: All values are normalized by screen dimensions
 
 #### 2. **Double DQN Implementation**
 ```python
-# Main network ile en iyi aksiyonu seç
+# Select best action using main network
 best_actions = torch.argmax(self.model(next_states), dim=1)
-# Target network ile Q değerini hesapla
+# Calculate Q value using target network
 next_q_values = self.target_model(next_states).gather(1, best_actions.unsqueeze(1))
 ```
 
 #### 3. **Target Network Updates**
-- Her 100 adımda bir target network güncellenir
-- Daha stabil eğitim sağlar
+- Target network updates every 100 steps
+- Ensures more stable training
 
 #### 4. **Logarithmic Epsilon Decay**
 ```python
@@ -38,83 +38,95 @@ target_tensor = current_q_values.clone().detach()
 loss = F.mse_loss(current_q_values.squeeze(), target_q_values)
 ```
 
-#### 6. **Debugging ve Monitoring**
-- Her fonksiyona docstring eklendi
-- Action seçimlerinde print/log çıktıları
-- NaN/Inf kontrolü için assert'ler
+#### 6. **Debugging and Monitoring**
+- Comprehensive docstrings for all functions
+- Print/log outputs for action selections
+- Assert statements for NaN/Inf checking
 - Training progress monitoring
 
-## 📁 Dosya Yapısı
+## 📁 Project Structure
 
 ```
 PaddleGame/
-├── dqn_ai.py              # Gelişmiş DQN AI
-├── paddle_ai.py           # Basit Q-Learning AI
-├── paddle_game.py         # Ana oyun dosyası
-├── ai_test_untrained.py   # Eğitilmemiş model testi
-└── README.md              # Bu dosya
+├── dqn_ai.py              # Advanced DQN AI
+├── paddle_ai.py           # Simple Q-Learning AI
+├── paddle_game.py         # Main game file
+├── ai_test_untrained.py   # Untrained model test
+├── requirements.txt       # Python dependencies
+├── models/                # Trained model checkpoints
+│   ├── paddle_dqn_model.pth
+│   └── paddle_dqn_model_checkpoint_*.pth
+├── before.MOV             # Video showing untrained AI performance
+├── after.MOV              # Video showing trained AI performance
+└── README.md              # This file
 ```
 
-## 🎮 Kullanım
+## 🎮 Usage
 
-### Eğitim
+### Installation
+```bash
+cd PaddleGame
+pip install -r requirements.txt
+```
+
+### Training the AI
 ```bash
 cd PaddleGame
 python paddle_game.py train
 ```
 
-### Oyun Oynama
+### Playing the Game
 ```bash
 cd PaddleGame
 python paddle_game.py
 ```
 
-### Eğitilmemiş Model Testi
+### Testing Untrained Model
 ```bash
 cd PaddleGame
 python ai_test_untrained.py
 ```
 
-## 🔧 Teknik Detaylar
+## 🔧 Technical Details
 
-### State Vector (6 boyutlu)
-1. `ball_y / WINDOW_HEIGHT` - Topun Y pozisyonu (normalize)
-2. `paddle_y / WINDOW_HEIGHT` - Paddle'ın Y pozisyonu (normalize)
-3. `ball_direction_x / BALL_SPEED_X` - Topun X yönü (normalize)
-4. `ball_direction_y / BALL_SPEED_Y` - Topun Y yönü (normalize)
-5. `ball_velocity_x / 5.0` - Topun X hızı (normalize) ⭐ **YENİ**
-6. `paddle_height / PADDLE_HEIGHT` - Paddle yüksekliği (normalize) ⭐ **YENİ**
+### State Vector (6-dimensional)
+1. `ball_y / WINDOW_HEIGHT` - Ball Y position (normalized)
+2. `paddle_y / WINDOW_HEIGHT` - Paddle Y position (normalized)
+3. `ball_direction_x / BALL_SPEED_X` - Ball X direction (normalized)
+4. `ball_direction_y / BALL_SPEED_Y` - Ball Y direction (normalized)
+5. `ball_velocity_x / 5.0` - Ball X velocity (normalized) ⭐ **NEW**
+6. `paddle_height / PADDLE_HEIGHT` - Paddle height (normalized) ⭐ **NEW**
 
-### Reward Sistemi
-- **Top vurma**: +2 puan
-- **Merkeze yakın vurma**: +1 ek puan
-- **Top kaçırma**: -2 puan
-- **Topa yakın olma**: +0.2 puan
+### Reward System
+- **Hitting the ball**: +2 points
+- **Hitting near center**: +1 extra point
+- **Missing the ball**: -2 points
+- **Being close to ball**: +0.2 points
 
-### Eğitim Parametreleri
+### Training Parameters
 - **Learning Rate**: 0.001
 - **Gamma (Discount Factor)**: 0.99
-- **Epsilon Decay**: Logaritmik
-- **Target Network Update**: Her 100 adım
+- **Epsilon Decay**: Logarithmic
+- **Target Network Update**: Every 100 steps
 - **Batch Size**: 32
 - **Memory Size**: 10,000
 
-## 🧪 Test Senaryoları
+## 🧪 Test Scenarios
 
-### 1. Eğitilmemiş Model Testi
-`ai_test_untrained.py` dosyası ile eğitilmemiş modelin davranışını gözlemleyebilirsiniz:
-- Rastgele hareketler
-- Yüksek epsilon değeri
-- Frame sayısı ve epsilon gösterimi
+### 1. Untrained Model Test
+Use `ai_test_untrained.py` to observe untrained model behavior:
+- Random movements
+- High epsilon values
+- Frame count and epsilon display
 
-### 2. Eğitim Öncesi/Sonrası Karşılaştırma
-1. `ai_test_untrained.py` çalıştır (eğitilmemiş)
-2. `paddle_game.py train` ile eğitim yap
-3. `paddle_game.py` ile eğitilmiş modeli test et
+### 2. Before/After Comparison
+1. Run `ai_test_untrained.py` (untrained)
+2. Train with `paddle_game.py train`
+3. Test trained model with `paddle_game.py`
 
-## 📊 Monitoring ve Debugging
+## 📊 Monitoring and Debugging
 
-### Console Çıktıları
+### Console Outputs
 ```
 DQN AI initialized with state_size=6, action_size=3
 Random action: 1 (epsilon: 0.950)
@@ -124,25 +136,53 @@ Target network updated at step 100
 ```
 
 ### Debug Assertions
-- State değerlerinde NaN/Inf kontrolü
-- Reward tipi kontrolü
-- Done değeri boolean kontrolü
+- NaN/Inf checking in state values
+- Reward type validation
+- Boolean done value checking
 
-## 🎯 Performans İyileştirmeleri
+## 🎯 Performance Optimizations
 
-1. **CPU Optimizasyonu**: GPU yerine CPU kullanımı
-2. **Küçük Network**: 64-32-3 mimarisi
-3. **Efficient Memory**: 10,000 deneyim limiti
-4. **Frequent Updates**: Her 100 adımda target network güncelleme
+1. **CPU Optimization**: Uses CPU instead of GPU for better compatibility
+2. **Compact Network**: 64-32-3 architecture
+3. **Efficient Memory**: 10,000 experience limit
+4. **Frequent Updates**: Target network updates every 100 steps
 
-## 🔮 Gelecek Geliştirmeler
+## 🎥 Demo Videos
+
+The repository includes two demonstration videos:
+- **`before.MOV`**: Shows the AI performance before training (random movements)
+- **`after.MOV`**: Shows the AI performance after training (intelligent gameplay)
+
+These videos demonstrate the significant improvement in AI performance through the training process.
+
+## 🔮 Future Enhancements
 
 - [ ] Prioritized Experience Replay
 - [ ] Dueling DQN
 - [ ] Multi-agent training
 - [ ] Visual state representation
 - [ ] Curriculum learning
+- [ ] Performance metrics dashboard
 
-## 📝 Lisans
+## 🛠️ Dependencies
 
-Bu proje eğitim amaçlı geliştirilmiştir. 
+- PyTorch
+- Pygame
+- NumPy
+- Matplotlib (for visualization)
+
+## 📝 License
+
+This project is developed for educational purposes.
+
+## 🤝 Contributing
+
+Feel free to contribute to this project by:
+- Reporting bugs
+- Suggesting new features
+- Improving documentation
+- Optimizing the AI algorithms
+
+## 📞 Contact
+
+For questions or suggestions, please open an issue on GitHub. 
