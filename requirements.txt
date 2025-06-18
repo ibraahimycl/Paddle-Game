@@ -1,0 +1,19 @@
+# Paddle Game AI - Requirements
+# Python version: 3.13.5
+
+# Deep Learning Framework
+torch==2.7.1
+
+# Game Development
+pygame==2.6.1
+
+# Numerical Computing
+numpy==2.3.0
+
+# Note: The following packages are included with Python standard library:
+# - random
+# - math
+# - copy
+# - collections
+# - sys
+# - re 
