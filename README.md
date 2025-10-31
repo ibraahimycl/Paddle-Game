@@ -1,5 +1,25 @@
 # 🏓 Paddle Game with Enhanced AI
 
+## Overview
+
+This project is a **classic paddle game (similar to Pong)** powered by **Deep Reinforcement Learning**. The AI learns to play the game through training using **Deep Q-Network (DQN)** with advanced techniques like Double DQN and target networks.
+
+### What does it do?
+
+- 🎮 **Play against AI**: Challenge a trained AI agent in a paddle game
+- 🤖 **Train your own AI**: Use Deep Q-Learning to train an AI from scratch
+- 📊 **Watch it learn**: Observe the AI improve from random movements to intelligent gameplay
+- 🧠 **Advanced AI techniques**: Implements state-of-the-art reinforcement learning methods
+
+### Key Highlights
+
+- **Deep Q-Network (DQN)** with Double DQN implementation
+- **6-dimensional state space** with enhanced features (ball velocity, paddle position)
+- **Experience replay** for stable training
+- **Logarithmic epsilon decay** for balanced exploration/exploitation
+- **Checkpoint system** to save and resume training
+- Clean, modular code structure with proper Python packages
+
 ## 🎥 Demo Videos
 
 The repository includes two demonstration videos showing the AI's performance before and after training:
