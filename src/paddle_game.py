@@ -1,7 +1,7 @@
 import pygame # oyun kütüphanesi
 import sys # sistem kütüphanesi
 import random # rastgele sayı üretmek için
-from dqn_ai import DQNAI # derin Q-öğrenme AI modeli
+from src.ai.dqn_ai import DQNAI # derin Q-öğrenme AI modeli
 
 # Pygame'i başlat
 pygame.init()
@@ -199,7 +199,7 @@ def train_ai(total_timesteps=250000, ai=None, start_timesteps=0):
             
             # Save model at regular intervals
             if timesteps - last_save_timesteps >= save_interval:
-                ai.save_model(f"paddle_dqn_model_checkpoint_{timesteps}.pth")
+                ai.save_model(f"models/paddle_dqn_model_checkpoint_{timesteps}.pth")
                 last_save_timesteps = timesteps
                 print(f"Checkpoint saved at {timesteps} timesteps")
             
@@ -222,8 +222,8 @@ def train_ai(total_timesteps=250000, ai=None, start_timesteps=0):
         episode += 1
     
     print("\nTraining complete! Saving final model...")
-    ai.save_model("paddle_dqn_model.pth")
-    print("Final model saved as 'paddle_dqn_model.pth'")
+    ai.save_model("models/paddle_dqn_model.pth")
+    print("Final model saved as 'models/paddle_dqn_model.pth'")
     print("\nStarting game in 3 seconds...")
     pygame.time.wait(3000)  # Wait 3 seconds before starting the game
     return ai
@@ -307,7 +307,7 @@ if __name__ == "__main__":
             print("Training complete! Model saved as 'paddle_dqn_model.pth'")
         elif sys.argv[1] == "test":
             print("Testing untrained AI...")
-            import ai_test_untrained
+            import tests.ai_test_untrained
         else:
             print("Usage:")
             print("  python paddle_game.py train          # Train new model")
@@ -317,7 +317,7 @@ if __name__ == "__main__":
     else:
         try:
             ai = DQNAI()
-            ai.load_model("paddle_dqn_model.pth")
+            ai.load_model("models/paddle_dqn_model.pth")
             print("Loaded trained model. Starting game...")
         except:
             print("No trained model found. Starting training...")

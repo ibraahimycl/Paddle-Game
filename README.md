@@ -16,13 +16,13 @@ The repository includes two demonstration videos showing the AI's performance be
 
 These videos demonstrate the significant improvement in AI performance through the training process.
 
-## 🚀 Features
+## Features
 
-### 🤖 AI Models
-- **DQN AI** (`dqn_ai.py`): Advanced AI using Deep Q-Network with Double DQN
-- **Simple AI** (`paddle_ai.py`): Basic Q-Learning based AI
+### AI Models
+- **DQN AI** (`src/ai/dqn_ai.py`): Advanced AI using Deep Q-Network with Double DQN
+- **Simple AI** (`src/ai/paddle_ai.py`): Basic Q-Learning based AI
 
-### 🧠 Advanced AI Features
+### Advanced AI Features
 
 #### 1. **Enhanced State Vector**
 - **Previous**: 4-dimensional state (ball_y, paddle_y, ball_direction_x, ball_direction_y)
@@ -52,30 +52,32 @@ target_tensor = current_q_values.clone().detach()
 loss = F.mse_loss(current_q_values.squeeze(), target_q_values)
 ```
 
-#### 6. **Debugging and Monitoring**
-- Comprehensive docstrings for all functions
-- Print/log outputs for action selections
-- Assert statements for NaN/Inf checking
-- Training progress monitoring
-
 ## 📁 Project Structure
 
 ```
 PaddleGame/
-├── dqn_ai.py              # Advanced DQN AI
-├── paddle_ai.py           # Simple Q-Learning AI
-├── paddle_game.py         # Main game file
-├── ai_test_untrained.py   # Untrained model test
+├── README.md              # This file
 ├── requirements.txt       # Python dependencies
+├── main.py                # Main entry point
+├── src/                   # Source code
+│   ├── __init__.py
+│   ├── paddle_game.py     # Main game logic
+│   └── ai/                # AI implementations
+│       ├── __init__.py
+│       ├── dqn_ai.py      # Advanced DQN AI
+│       └── paddle_ai.py   # Simple Q-Learning AI
+├── tests/                 # Test files
+│   ├── __init__.py
+│   └── ai_test_untrained.py   # Untrained model test
 ├── models/                # Trained model checkpoints
 │   ├── paddle_dqn_model.pth
 │   └── paddle_dqn_model_checkpoint_*.pth
-├── before.MOV             # Video showing untrained AI performance
-├── after.MOV              # Video showing trained AI performance
-└── README.md              # This file
+└── media/                 # Demo videos
+    ├── before.MOV         # Video showing untrained AI
+    └── after.MOV          # Video showing trained AI
 ```
 
-## 🎮 Usage
+## Usage
 
 ### Installation
 ```bash
@@ -85,20 +87,24 @@ pip install -r requirements.txt
 
 ### Training the AI
 ```bash
-cd PaddleGame
-python paddle_game.py train
+python main.py train
+```
+
+### Resume Training from Checkpoint
+```bash
+python main.py resume models/paddle_dqn_model_checkpoint_100000.pth
 ```
 
 ### Playing the Game
 ```bash
-cd PaddleGame
-python paddle_game.py
+python main.py
 ```
 
 ### Testing Untrained Model
 ```bash
-cd PaddleGame
-python ai_test_untrained.py
+python main.py test
+# or directly run
+python -m tests.ai_test_untrained
 ```
 
 ## 🔧 Technical Details
@@ -109,51 +115,26 @@ python ai_test_untrained.py
 - **Missing the ball**: -2 points
 - **Being close to ball**: +0.2 points
 
-### Training Parameters
-- **Learning Rate**: 0.01
-- **Gamma (Discount Factor)**: 0.99
-- **Epsilon Decay**: Logarithmic
-- **Target Network Update**: Every 100 steps
-- **Batch Size**: 32
-- **Memory Size**: 10,000
-
-## 🧪 Test Scenarios
+## Test Scenarios
 
 ### 1. Untrained Model Test
-Use `ai_test_untrained.py` to observe untrained model behavior:
+Use the test command to observe untrained model behavior:
 - Random movements
 - High epsilon values
 - Frame count and epsilon display
 
 ### 2. Before/After Comparison
-1. Run `ai_test_untrained.py` (untrained)
-2. Train with `paddle_game.py train`
-3. Test trained model with `paddle_game.py`
+1. Run `python main.py test` (untrained)
+2. Train with `python main.py train`
+3. Test trained model with `python main.py`
 
-## 📊 Monitoring and Debugging
 
-### Debug Assertions
-- NaN/Inf checking in state values
-- Reward type validation
-- Boolean done value checking
-
-## 🎯 Performance Optimizations
+## Performance Optimizations
 
 1. **CPU Optimization**: Uses CPU instead of GPU for better compatibility
 2. **Compact Network**: 64-32-3 architecture
 3. **Efficient Memory**: 10,000 experience limit
 4. **Frequent Updates**: Target network updates every 100 steps
-
----
-
-## 🔮 Future Enhancements
-
-- [ ] Prioritized Experience Replay
-- [ ] Dueling DQN
-- [ ] Multi-agent training
-- [ ] Visual state representation
-- [ ] Curriculum learning
-- [ ] Performance metrics dashboard
 
 ## 🛠️ Dependencies
 
@@ -165,15 +146,3 @@ Use `ai_test_untrained.py` to observe untrained model behavior:
 ## 📝 License
 
 This project is developed for educational purposes.
-
-## 🤝 Contributing
-
-Feel free to contribute to this project by:
-- Reporting bugs
-- Suggesting new features
-- Improving documentation
-- Optimizing the AI algorithms
-
-## 📞 Contact
-
-For questions or suggestions, please open an issue on GitHub. 

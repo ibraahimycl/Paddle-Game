@@ -1,7 +1,7 @@
 import pygame
 import sys
-from paddle_game import Ball, Paddle
-from dqn_ai import DQNAI
+from src.paddle_game import Ball, Paddle
+from src.ai.dqn_ai import DQNAI
 
 # Pygame başlangıç
 pygame.init()
